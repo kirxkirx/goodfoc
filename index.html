@@ -31,7 +31,7 @@ function myFunction() {
  // do the actual calculation
  let vF2 = a*vT2 - a*vT1 + vF1;
  
- document.getElementById("demo").innerHTML = "The predicted focus value for " + vT2 + "&deg;C is <a style='color:green;font-size:160%;'>" + vF2.toFixed(0) + "</a>";
+ document.getElementById("demo").innerHTML = "The predicted focus value for " + vT2 + "&deg;C is<br><a style='color:green;font-size:160%;'>" + vF2.toFixed(0) + "</a>";
 }
 </script>
 
@@ -75,9 +75,12 @@ a:hover {color: #55f; text-decoration: underline}
 <tr><td></td><td></td></tr>
 <tr><td>Current temperture (&deg;C):</td><td><input type="number" id="T2" value="15.3" size=8></td></tr>
 <tr><td></td><td><button type="button" onclick="myFunction()">Compute</button></td></td></tr>
-<tr><td><div id="demo">The result will appear here</div></td><td></td></tr>
+<tr><td><div id="demo">The result will appear here<br><a style='color:white;font-size:160%;'>000</a></div></td><td></td></tr>
 </table>
-
+<br>
+<br>
+<br>
+You may view the source code of this page by pressing Ctrl+U or <a href='https://github.com/kirxkirx/goodfoc'>on GitHub</a>.
 </center>
 
 </body>
