@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<script>
+function myFunction() {
+
+ // The temperature drift slope in units of "focus_units/deg_C"
+ const a = 64.4;
+
+ // Get focus and temperature values from the input fields
+ const vF1 = document.getElementById("F1").valueAsNumber; 
+ const vT1 = document.getElementById("T1").valueAsNumber;
+ const vT2 = document.getElementById("T2").valueAsNumber;
+
+ // Check the input values
+ if (isNaN(vF1) || vF1 < -3000 || vF1 > 1000) {
+  document.getElementById("demo").innerHTML = "The measured focus value must be between -3000 and 1000";
+  return false;
+ }
+
+ if (isNaN(vT1) || vT1 < -30 || vT1 > 30) {
+  document.getElementById("demo").innerHTML = "The focusing temperature value must be between -30 and 30";
+  return false;
+ }
+ 
+ if (isNaN(vT2) || vT2 < -30 || vT2 > 30) {
+  document.getElementById("demo").innerHTML = "The current temperature value must be between -30 and 30";
+  return false;
+ }
+
+ // do the actual calculation
+ let vF2 = a*vT2 - a*vT1 + vF1;
+ 
+ document.getElementById("demo").innerHTML = "The predicted focus value for " + vT2 + "&deg;C is <a style='color:green;font-size:160%;'>" + vF2.toFixed(0) + "</a>";
+}
+</script>
+
+<style type="text/css">
+body { color: #000;
+ background: #fff;
+ font-family: arial, helvetica, sans-serif;
+ font-size: 12pt;
+ line-height: 16pt;
+ margin-top: 3mm;
+ margin-bottom: 3mm;
+ margin-left: 10mm;
+ margin-right: 10mm;
+}
+ 
+p {text-align: justify; text-indent: 6mm; line-height: 16pt}
+.code {text-align: left; font-family: courier; background: #ccc; color:
+#000}
+table.main {border-spacing: 5pt}
+td { text-align: right; padding-left: 20pt; padding-right: 20pt; padding-bottom: 3pt }
+
+a:link {color: #55f; text-decoration: none}
+a:visited {color: #33f; text-decoration: none}
+a:active {color: #55f; text-decoration: none}
+a:hover {color: #55f; text-decoration: underline}
+</style>
+
+</head>
+
+<body>
+
+<center>
+<h2>SOAR/Goodman <a style='color:red;'>RED</a> camera focus drift calculator</h2>
+<table width="550">
+    <colgroup>
+       <col span="1" style="width: 80%;">
+       <col span="1" style="width: 20%;">
+    </colgroup>
+<tr><td>Measured focus value:</td><td><input type="number" id="F1" value="-123" size=8></td></tr>
+<tr><td>Temperture while focusing (&deg;C):</td><td><input type="number" id="T1" value="17.3" size=8></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td>Current temperture (&deg;C):</td><td><input type="number" id="T2" value="15.3" size=8></td></tr>
+<tr><td></td><td><button type="button" onclick="myFunction()">Compute</button></td></td></tr>
+<tr><td><div id="demo">The result will appear here</div></td><td></td></tr>
+</table>
+
+</center>
+
+</body>
+</html> 
